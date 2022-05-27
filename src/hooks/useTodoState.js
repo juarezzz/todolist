@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import useLocalStorageState from "./useLocalStorageState"
 import { v4 as uuid } from "uuid"
 
 const dateToString = date => {
@@ -11,7 +11,7 @@ const dateToString = date => {
 }
 
 const useTodoState = initialTodos => {
-    const [todos, setTodos] = useState(initialTodos)
+    const [todos, setTodos] = useLocalStorageState('todos', initialTodos)
 
     return {
         todos
