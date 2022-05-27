@@ -6,7 +6,7 @@ import { TodosContext } from './contexts/todos.context';
 
 function TodoForm() {
     const [text, handleChange, resetText] = useInputState('')
-    const { addTodo } = useContext(TodosContext)
+    const { dispatch } = useContext(TodosContext)
 
     return (
         <Paper style={{
@@ -15,7 +15,7 @@ function TodoForm() {
         }}>
             <form onSubmit={e => {
                 e.preventDefault()
-                addTodo(text)
+                dispatch({ type: 'ADD', task: text })
                 resetText()
             }}>
                 <TextField value={text}

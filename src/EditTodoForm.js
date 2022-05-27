@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TextField from '@mui/material/TextField'
 import useInputState from './hooks/useInputState'
+import { TodosContext } from './contexts/todos.context';
 
-function EditTodoForm({ task, editTodo, todoId, toggleEditForm }) {
+function EditTodoForm({ task, todoId, toggleEditForm }) {
     const [text, handleChange] = useInputState(task);
+    const { dispatch } = useContext(TodosContext)
 
     return (
         <form
             onSubmit={evt => {
                 evt.preventDefault()
-                editTodo(todoId, text)
+                dispatch({ type: "EDIT", todoId: todoId, task: text })
                 toggleEditForm()
             }}
             style={{

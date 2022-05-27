@@ -21,7 +21,7 @@ function TodoApp() {
         >
             <AppBar color='primary' position='static' style={{ 'height': '64px' }}>
                 <Toolbar>
-                    <Typography component='h1' variant='h4' color="inherit">
+                    <Typography component='h1' variant='h5' color="inherit">
                         TODOS
                     </Typography>
                 </Toolbar>
