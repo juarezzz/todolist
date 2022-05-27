@@ -1,18 +1,17 @@
-import React, { createContext, useReducer } from 'react'
-import useTodoState from '../hooks/useTodoState'
-import todoReducer from '../reducers/todo.reducer'
+import React, { createContext } from "react";
+import useLocalStorageReducer from "../hooks/useLocalStorageReducer.js";
+import todoReducer from "../reducers/todo.reducer.js";
 
-const defaultTodos = [
-    { id: 1, task: 'Mow the lawn', completed: false },
-    { id: 2, task: 'Take a nap', completed: false },
-]
+export const TodosContext = createContext();
+export const DispatchContext = createContext();
 
-export const TodosContext = createContext()
 export function TodosProvider(props) {
-    const [todos, dispatch] = useReducer(todoReducer, defaultTodos)
+    const [todos, dispatch] = useLocalStorageReducer('todos', [], todoReducer);
     return (
-        <TodosContext.Provider value={{ todos, dispatch }}>
-            {props.children}
+        <TodosContext.Provider value={todos}>
+            <DispatchContext.Provider value={dispatch}>
+                {props.children}
+            </DispatchContext.Provider>
         </TodosContext.Provider>
-    )
+    );
 }
